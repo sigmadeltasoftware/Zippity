@@ -12,9 +12,8 @@ class Zippity {
 
         @Throws(IOException::class)
         fun unzip(zipFile: ZipFile, destDir: File) {
-            val entries = zipFile.entries()
 
-            entries.asSequence().forEach {
+            zipFile.entries().asSequence().forEach {
                 val subFile = File(destDir, it.name)
                 subFile.parentFile.mkdirs()
 
@@ -31,14 +30,9 @@ class Zippity {
             val origStream = BufferedInputStream(input)
             val destStream = BufferedOutputStream(fileOutStream)
 
-            val buf = ByteArray(8 * 1024) // 8 KB Buffer
-
             origStream.use { orig ->
                 destStream.use { dest ->
-                    do {
-                        val streamSize = orig.read(buf)
-                        orig.copyTo(dest, streamSize)
-                    } while (streamSize != -1)
+                    orig.copyTo(dest)
                 }
             }
         }
