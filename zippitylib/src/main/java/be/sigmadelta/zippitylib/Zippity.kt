@@ -14,6 +14,8 @@ import java.util.zip.ZipEntry
 class Zippity {
     companion object {
 
+        const val TAG = "Zippity"
+
         @Throws(IOException::class)
         fun unzip(zipFile: ZipFile, destDir: File) {
 
@@ -71,7 +73,7 @@ class Zippity {
 
         @Throws(IOException::class)
         private fun writeFileToZip(out: ZipOutputStream, file: File, baseLineUrl: String) {
-            Log.d("TAG", "file: ${file.absolutePath.removePrefix(baseLineUrl)}")
+            Log.d(TAG, "file: ${file.absolutePath.removePrefix(baseLineUrl)}")
 
             when {
                 file.isFile -> {
