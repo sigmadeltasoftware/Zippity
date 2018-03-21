@@ -27,12 +27,29 @@ class MainActivity: Activity() {
         setContentView(R.layout.activity_main)
 
         findViewById<Button>(R.id.main_unzip_btn).setOnClickListener { _ ->
-            val zip = getTestZip(this).absolutePath
-            Log.d(TAG, "FilePath: ${zip}")
 
             try {
+                val zip = getTestZip(this).absolutePath
+                Log.d(TAG, "FilePath: $zip")
+
                 Zippity.unzip(ZipFile(zip), File("${getExternalFilesDir(null)}"))
                 Toast.makeText(this, "Successfully unzipped the testfile!", Toast.LENGTH_LONG).show()
+            } catch (e: IOException) {
+                Log.e(TAG, e.localizedMessage)
+            }
+        }
+
+        findViewById<Button>(R.id.main_zip_btn).setOnClickListener { _ ->
+            try {
+
+                val fileList = arrayListOf(
+                        File("${getExternalFilesDir(null)}/readme.txt"),
+                        File("${getExternalFilesDir(null)}/readme_2.txt"),
+                        File("${getExternalFilesDir(null)}/readme_dir/readme.txt"))
+
+                Zippity.zip(fileList, File("${getExternalFilesDir(null)}/newzip.zip"))
+
+                Toast.makeText(this, "Successfully zipped the new zipfile!", Toast.LENGTH_LONG).show()
             } catch (e: IOException) {
                 Log.e(TAG, e.localizedMessage)
             }
