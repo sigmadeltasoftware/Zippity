@@ -59,12 +59,10 @@ class Zippity {
         }
 
         @Throws(IOException::class, FileNotFoundException::class, IllegalArgumentException::class)
-        fun zip(directoryToZip: String, outputZip: File) {
+        fun zip(directoryToZip: File, outputZip: File) {
 
-            val dirFile = File(directoryToZip)
-
-            if (dirFile.exists() && dirFile.isDirectory) {
-                zip(dirFile.listFiles().toList(), outputZip)
+            if (directoryToZip.exists() && directoryToZip.isDirectory) {
+                zip(directoryToZip.listFiles().toList(), outputZip)
             } else {
                 throw IllegalArgumentException("Invalid directory specified: $directoryToZip")
             }
