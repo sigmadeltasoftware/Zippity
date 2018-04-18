@@ -1,7 +1,7 @@
 # Zippity
 [![Download](https://api.bintray.com/packages/sigmadeltasoftware/Zippity/Zippity/images/download.svg) ](https://bintray.com/sigmadeltasoftware/Zippity/Zippity/_latestVersion)
 
-Ultra-lightweight Kotlin-based Android library to zip or unzip. __Nothing less, nothing more__.
+Ultra-lightweight Kotlin-based Android library to zip or unzip. __Nothing more, nothing less__.
 
 
 ### Installation
@@ -14,7 +14,7 @@ implementation 'be.sigmadelta:zippitylib:x.x.x'
 ### Usage
 The API is all about keeping it stupid simple:
 
-```
+```kotlin
 try {
     // Unzipping
     val archiveFile = File("/path/to/zip/file.zip")
